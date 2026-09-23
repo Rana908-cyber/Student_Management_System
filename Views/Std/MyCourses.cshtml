@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Student.Models.Course>
+
+@{
+    ViewData["Title"] = "My Enrolled Courses";
+}
+
+<div class="container mt-4">
+    <h2>My Enrolled Courses</h2>
+    <hr />
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            You haven't enrolled in any courses yet. Go back to <a asp-action="V_courses" class="alert-link">Available Courses</a> to enroll.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var course in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm border-success">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">@course.Name</h5>
+                            <p class="card-text">@course.Description</p>
+                            <span class="badge bg-success">Enrolled</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+ <div class="mt-3">
+    <a asp-action="V_courses" class="btn btn-secondary">Go to All Courses</a>
+</div>
